@@ -48,6 +48,7 @@ struct Node
  *
  */
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
+void help_pivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
 
 /**
  * Given a linked list pointed to by head, removes (filters out) nodes
@@ -83,7 +84,17 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
-
+  if(head == NULL){return head;}
+  Node* curr = llfilter(head->next, pred);
+  if(pred(head->val) == false){
+    head->next = curr;
+    curr = head;
+    return curr;
+  }
+  else{
+    delete head;
+    return curr;
+  } 
 
 }
 
